@@ -11,6 +11,7 @@ class ProductListScreen extends StatefulWidget {
 }
 
 class _ProductListScreenState extends State<ProductListScreen> {
+  int x = 0;
   ApiModel apiModel = ApiModel();
   late Future<List<Product>> futureList;
 
@@ -34,7 +35,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: badges.Badge(
-                badgeContent: Text('0', style: TextStyle(color: Colors.white)),
+                badgeContent: Text(
+                  '0',
+                  style: TextStyle(color: Colors.white),
+                ),
                 child: Icon(Icons.shopping_bag_outlined),
               ),
             ),
@@ -83,7 +87,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                               ),
                               elevation: 2,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              
+                            },
                             child: Text("Add"),
                           ),
                         ),
