@@ -1,8 +1,13 @@
 import 'package:cart/product_list.dart';
+import 'package:cart/shared_prefernce/shared.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+// main.dart mein ye change karo
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(create: (_) => CartProvider(), child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,10 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-       
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       home: const ProductListScreen(),
     );
   }

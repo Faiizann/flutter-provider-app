@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
+import 'package:cart/Api/model.dart';
 import 'package:sqflite/sqflite.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -38,5 +40,15 @@ class DBHelper {
   Future<int> delete(int id) async {
     var dbClient = await db;
     return await dbClient!.delete('cart', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<List<Product>> getCartList() async {
+    var dbClient = await db;
+    final List<Map<String, Object?>> queryResult = await dbClient!.query(
+      'cart',
+    );
+
+    // Yahan Product.fromMap use karo (Niche wala point dekho)
+    return queryResult.map((e) => Product.fromMap(e)).toList();
   }
 }

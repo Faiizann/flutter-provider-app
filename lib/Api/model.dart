@@ -14,6 +14,20 @@ class Product {
     required this.images,
     required this.category,
   });
+
+  // Database ke Map se Product object banane ke liye
+  factory Product.fromMap(Map<dynamic, dynamic> map) {
+    return Product(
+      id: map['id'],
+      title: map['title'],
+      price: double.parse(
+        map['price'],
+      ), // Humne string save ki thi, ab double bana lo
+      description: '', // Database mein save nahi kiya tha, toh khali chor do
+      images: [map['image']], // Database wali image ko list mein dalo
+      category: Category(id: 0, name: '', image: ''), // Default category
+    );
+  }
   // Product class ke andar ye add karo:
   Map<String, dynamic> toMap() {
     return {
